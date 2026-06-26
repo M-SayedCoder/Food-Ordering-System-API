@@ -22,7 +22,7 @@ A RESTful API simulating a food ordering platform (similar to Talabat or Uber Ea
 
 > Example of testing all API endpoints using PowerShell and cURL commands.
 
-![API Testing Screenshot](./screenshots/api-testing-blur.png)
+![API Testing Screenshot](./screenshots/Food-API-Resultss.png)
 
 ---
 
