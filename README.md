@@ -205,5 +205,4 @@ curl http://localhost:5000/api/foods/000000000000000000000000
 ## 👨‍💻 Author
 
 **Mohamed Sayed**
-
 Full Stack Developer
