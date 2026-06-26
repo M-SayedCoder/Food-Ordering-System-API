@@ -1,24 +1,34 @@
 # 🍔 Food Ordering System API
 
-A RESTful API simulating a food ordering platform (like Talabat or Uber Eats), built with **Node.js**, **Express.js**, and **MongoDB (Mongoose)**.
+A RESTful API simulating a food ordering platform (similar to Talabat or Uber Eats), built with **Node.js**, **Express.js**, and **MongoDB (Mongoose)**.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Node.js**
-- **Express.js**
-- **MongoDB** with Mongoose
-- **Joi** — request validation
-- **Helmet** — security headers
-- **Morgan** — HTTP request logger
-- **dotenv** — environment variables
+* **Node.js**
+* **Express.js**
+* **MongoDB** with Mongoose
+* **Joi** — request validation
+* **Helmet** — security headers
+* **Morgan** — HTTP request logger
+* **dotenv** — environment variables
+
+---
+
+## 📸 API Testing Preview
+
+### PowerShell API Testing
+
+> Example of testing all API endpoints using PowerShell and cURL commands.
+
+![API Testing Screenshot](./screenshots/api-testing-blur.png)
 
 ---
 
 ## 📁 Project Structure
 
-```
+```bash
 food-ordering-api/
 ├── app.js                        # Entry point
 ├── .env                          # Environment variables
@@ -53,15 +63,15 @@ npm install
 Edit the `.env` file:
 
 ```env
-PORT = 5000
-MONGO_URI = mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?appName=Cluster0
-NODE_ENV = DEVELOPMENT
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?appName=Cluster0
+NODE_ENV=DEVELOPMENT
 ```
 
 ### 4. Run the server
 
 ```bash
-# Development (with nodemon)
+# Development
 npm run dev
 
 # Production
@@ -72,96 +82,110 @@ npm start
 
 ## 📦 Food Schema
 
-| Field        | Type             | Description          |
-|--------------|------------------|----------------------|
-| `name`       | String           | Food item name       |
-| `description`| String           | Food description     |
-| `price`      | Number           | Price in EGP         |
-| `discount`   | Number           | Discount amount      |
-| `image`      | String (URL)     | Image URL            |
-| `restaurant` | String           | Restaurant name      |
-| `categories` | Array of Strings | Food categories      |
-| `isAvailable`| Boolean          | Availability status  |
+| Field         | Type             | Description         |
+| ------------- | ---------------- | ------------------- |
+| `name`        | String           | Food item name      |
+| `description` | String           | Food description    |
+| `price`       | Number           | Price in EGP        |
+| `discount`    | Number           | Discount amount     |
+| `image`       | String (URL)     | Image URL           |
+| `restaurant`  | String           | Restaurant name     |
+| `categories`  | Array of Strings | Food categories     |
+| `isAvailable` | Boolean          | Availability status |
 
 ---
 
 ## 🔗 API Endpoints
 
 ### Base URL
-```
+
+```bash
 http://localhost:5000/api/foods
 ```
 
-| Method   | Endpoint                          | Description                        |
-|----------|-----------------------------------|------------------------------------|
-| `GET`    | `/api/foods`                      | Get all foods (sorted by name)     |
-| `GET`    | `/api/foods?restaurant=McDonalds` | Search by restaurant name (Bonus)  |
-| `GET`    | `/api/foods/available`            | Get available foods only (Bonus)   |
-| `GET`    | `/api/foods/:id`                  | Get food by ID                     |
-| `POST`   | `/api/foods`                      | Create a new food item             |
-| `PATCH`  | `/api/foods/:id`                  | Update a food item                 |
-| `DELETE` | `/api/foods/:id`                  | Delete a food item                 |
+| Method   | Endpoint                          | Description          |
+| -------- | --------------------------------- | -------------------- |
+| `GET`    | `/api/foods`                      | Get all foods        |
+| `GET`    | `/api/foods?restaurant=McDonalds` | Search by restaurant |
+| `GET`    | `/api/foods/available`            | Get available foods  |
+| `GET`    | `/api/foods/:id`                  | Get food by ID       |
+| `POST`   | `/api/foods`                      | Create a food item   |
+| `PATCH`  | `/api/foods/:id`                  | Update a food item   |
+| `DELETE` | `/api/foods/:id`                  | Delete a food item   |
 
 ---
 
 ## ✅ Validation Rules (Joi)
 
-| Field        | Rules                                      |
-|--------------|--------------------------------------------|
-| `name`       | Required, min 3 chars, max 100 chars       |
-| `description`| Required, min 20 chars                     |
-| `price`      | Required, >= 0                             |
-| `discount`   | Required, >= 0                             |
-| `image`      | Required, valid URL                        |
-| `restaurant` | Required, min 3 chars                      |
-| `categories` | Required, array of strings                 |
-| `isAvailable`| Required, boolean                          |
+| Field         | Validation             |
+| ------------- | ---------------------- |
+| `name`        | Required, min 3 chars  |
+| `description` | Required, min 20 chars |
+| `price`       | Required, >= 0         |
+| `discount`    | Required, >= 0         |
+| `image`       | Required, valid URL    |
+| `restaurant`  | Required               |
+| `categories`  | Required array         |
+| `isAvailable` | Required boolean       |
 
 ---
 
 ## 🧪 API Tests (PowerShell)
 
-### Create a food item
+### Create Food Item
+
 ```powershell
-curl -X POST http://localhost:5000/api/foods -H "Content-Type: application/json" -d '{"name": "Burger", "description": "Delicious beef burger with cheese and vegetables", "price": 85, "discount": 10, "image": "https://example.com/burger.jpg", "restaurant": "McDonalds", "categories": ["Fast Food", "Burgers"], "isAvailable": true}'
+curl -X POST http://localhost:5000/api/foods `
+-H "Content-Type: application/json" `
+-d '{"name":"Burger","description":"Delicious beef burger with cheese and vegetables","price":85,"discount":10,"image":"https://example.com/burger.jpg","restaurant":"McDonalds","categories":["Fast Food","Burgers"],"isAvailable":true}'
 ```
 
-### Get all foods
+### Get All Foods
+
 ```powershell
 curl http://localhost:5000/api/foods
 ```
 
-### Get available foods
+### Get Available Foods
+
 ```powershell
 curl http://localhost:5000/api/foods/available
 ```
 
-### Search by restaurant
+### Search By Restaurant
+
 ```powershell
 curl "http://localhost:5000/api/foods?restaurant=McDonalds"
 ```
 
-### Get food by ID
+### Get Food By ID
+
 ```powershell
 curl http://localhost:5000/api/foods/<ID>
 ```
 
-### Update a food item
+### Update Food Item
+
 ```powershell
-curl -X PATCH http://localhost:5000/api/foods/<ID> -H "Content-Type: application/json" -d '{"name": "Big Burger", "description": "Delicious beef burger with extra cheese and vegetables", "price": 100, "discount": 15, "image": "https://example.com/bigburger.jpg", "restaurant": "McDonalds", "categories": ["Fast Food"], "isAvailable": true}'
+curl -X PATCH http://localhost:5000/api/foods/<ID>
 ```
 
-### Delete a food item
+### Delete Food Item
+
 ```powershell
 curl -X DELETE http://localhost:5000/api/foods/<ID>
 ```
 
-### Validation error test (400)
+### Validation Error Test (400)
+
 ```powershell
-curl -X POST http://localhost:5000/api/foods -H "Content-Type: application/json" -d '{"name": "ab", "price": -5}'
+curl -X POST http://localhost:5000/api/foods `
+-H "Content-Type: application/json" `
+-d '{"name":"ab","price":-5}'
 ```
 
-### Not found test (404)
+### Not Found Test (404)
+
 ```powershell
 curl http://localhost:5000/api/foods/000000000000000000000000
 ```
@@ -170,5 +194,15 @@ curl http://localhost:5000/api/foods/000000000000000000000000
 
 ## 🌟 Bonus Features
 
-- 🔍 **Search by restaurant name** — `GET /api/foods?restaurant=McDonalds`
-- ✅ **Available foods only** — `GET /api/foods/available`
+* 🔍 Search foods by restaurant name
+* ✅ Filter available foods only
+* 🛡 Request validation using Joi
+* 📄 Organized project structure
+* ⚡ RESTful API design
+
+---
+
+## 👨‍💻 Author
+
+**Mohamed Sayed**
+Full Stack Developer
